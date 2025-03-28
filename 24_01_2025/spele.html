@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mana_spele</title>
+</head>
+
+<body>
+    <HTML>
+    
+            <canvas id=mansZimejums width=300 height=300 style="border:3px solid"> </canvas>
+    
+            <script>
+                const mansZimejums = document.getElementById("mansZimejums"); 
+                const ctx = mansZimejums.getContext("2d"); 
+    
+            let painting_x = 0;
+            let painting_y = 0;
+            let PaintingImg = new Image();
+            PaintingImg.src = "https://cdn.pixabay.com/photo/2016/12/17/18/47/painting-1914108_1280.png";
+            
+            let brush_x = 0;
+            let brush_y = 0;
+            let BrushImg = new Image();
+            BrushImg.src = "https://cdn.pixabay.com/photo/2016/03/31/22/34/brush-1297095_1280.png";
+
+            const paintingWidth = 75;
+            const paintingHeight = 75;
+
+            const brushWidth = 50;
+            const brushHeight = 50;
+
+            function MyKeyDownHandler (MyEvent) { 
+              if (MyEvent.keyCode == 37 && painting_x > 0)  {painting_x = painting_x - 10}; 
+              if (MyEvent.keyCode == 39 && painting_x + paintingImg.width < mansZimejums.width)  {painting_x = painting_x+10}; 
+              
+              }
+
+              addEventListener("keydown", MyKeyDownHandler); 
+              function Do_a_Frame () {
+                 painting_y = mansZimejums.height - PaintingImg.height;
+                 ctx.clearRect(0, 0, mansZimejums.width, mansZimejums.height);
+                 ctx.drawImage(PaintingImg, painting_x, painting_y, paintingWidth, paintingHeight);
+    
+        brush_y = brush_y + 3;
+        if (brush_y > mansZimejums.height) {
+            brush_y = 0;
+            
+            brush_x = Math.random() * (mansZimejums.width - brushWidth);
+            }   
+        ctx.drawImage(BrushImg, brush_x, brush_y, brushWidth, brushHeight);
+        }
+        
+         setInterval(Do_a_Frame, 25);
+    
+     </script>
+</body> 
+
+</html>
+
+            
